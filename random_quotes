@@ -1,0 +1,51 @@
+import tkinter as tk
+import random
+
+# List of quotes
+QUOTES = [
+    "Believe you can and you're halfway there.",
+    "Act as if what you do makes a difference. It does.",
+    "Success is not how high you have climbed, but how you make a positive difference to the world.",
+    "You are never too old to set another goal or to dream a new dream.",
+    "Happiness is not by chance, but by choice.",
+    "Keep your face always toward the sunshine, and shadows will fall behind you.",
+    "It is always the simple that produces the marvelous.",
+    "What we achieve inwardly will change outer reality.",
+    "The only limit to our realization of tomorrow is our doubts of today.",
+    "Do what you can, with what you have, where you are."
+]
+
+# Function to get a random quote
+def get_random_quote():
+    return random.choice(QUOTES)
+
+# Function to update the quote on the GUI
+def update_quote():
+    quote_label.config(text=get_random_quote())
+    app.configure(bg=get_random_color())
+
+# Function to generate a random color
+def get_random_color():
+    colors = ["lightblue", "lightgreen", "lightyellow", "lightpink", "lightgray"]
+    return random.choice(colors)
+
+# Creating the main window
+app = tk.Tk()
+app.title("Random Quote Generator")
+app.geometry("500x300")
+app.configure(bg="lightblue")
+
+# Creating a label to display the quote
+quote_label = tk.Label(app, text=get_random_quote(), wraplength=400, bg="lightblue", fg="darkblue", font=("Helvetica", 16), justify="center")
+quote_label.pack(expand=True)
+
+# Creating a button to generate a new quote
+new_quote_button = tk.Button(app, text="New Quote", command=update_quote, bg="darkblue", fg="white", font=("Helvetica", 14))
+new_quote_button.pack(pady=20)
+
+#  exit button to close  application
+exit_button = tk.Button(app, text="Exit", command=app.destroy, bg="red", fg="white", font=("Helvetica", 14))
+exit_button.pack(pady=10)
+
+
+app.mainloop()
